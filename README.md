@@ -1,39 +1,44 @@
-# 🚢 Titanic Survival Prediction
-
-This project applies **Machine Learning** techniques to predict whether a passenger survived the Titanic disaster based on demographic and travel details.  
-It uses **data preprocessing**, **feature engineering**, and **hyperparameter tuning** to compare multiple models.
-
----
-
-## 📌 Project Overview
-The goal of this project is to:
-- Load and clean the Titanic dataset
-- Handle missing values and encode categorical variables
-- Engineer new features to improve model performance
-- Train multiple machine learning models:
-  - Logistic Regression  
-  - Random Forest  
-  - Decision Tree
-- Perform **hyperparameter tuning** using `RandomizedSearchCV` with `KFold` cross-validation
-- Evaluate models using **Accuracy, Precision, Recall, and F1-score**
+# 🚢 Titanic Survival Prediction 
+A hands-on machine learning project to predict whether a passenger survived the Titanic disaster, using demographic, travel, and ticket information.  
+This project demonstrates **data preprocessing**, **feature engineering**, **model selection**, and **hyperparameter tuning** to compare different algorithms.
 
 ---
 
-## 📊 Dataset
-The dataset used is **Titanic-Dataset.csv** containing:
-- **PassengerId** – Unique ID for each passenger  
-- **Survived** – Target variable (1 = Survived, 0 = Did not survive)  
-- **Pclass** – Passenger class (1st, 2nd, 3rd)  
-- **Name, Sex, Age** – Demographics  
-- **SibSp, Parch** – Number of siblings/spouses and parents/children aboard  
-- **Ticket, Fare, Cabin, Embarked** – Ticket details and port of embarkation  
+## 📌 Problem Statement
 
-📥 **Dataset Link:** [Kaggle Titanic Dataset](https://www.kaggle.com/c/titanic)
+The Titanic dataset contains passenger details but also a **binary survival label** (`Survived`).  
+The goal is to **build and compare models** that predict whether a passenger survived, based on the given attributes.
 
 ---
 
-## ⚙️ Installation
-1. **Clone the repository**
-```bash
-git clone https://github.com/yourusername/titanic-survival-prediction.git
-cd titanic-survival-prediction
+## 🎯 Goal
+
+Predict whether a passenger survived the Titanic disaster, using personal, ticket, and cabin details.
+
+---
+
+## 📊 Dataset Overview
+
+- **Source:** `Titanic-Dataset.csv` (from [Kaggle Titanic Competition](https://www.kaggle.com/c/titanic))
+- **Target:** `Survived` (1 = survived, 0 = did not survive)
+- **Features:**
+  - Demographic: `Name`, `Sex`, `Age`
+  - Ticket & Cabin: `Ticket`, `Fare`, `Cabin`
+  - Travel Details: `Pclass`, `SibSp`, `Parch`, `Embarked`
+  - Engineered: `Family_members`
+
+---
+
+## 🛠 Feature Engineering & Data Preprocessing
+
+- **Handling Missing Values:**
+  - `Cabin` → extracted first letter, filled missing with `"Unknown"`
+  - `Embarked` → filled missing with most frequent value
+  - `Age` → filled missing with median
+
+- **Encoding Categorical Variables:**
+  - Used `pd.get_dummies()` for `Sex`, `Embarked`, and `Cabin`
+
+- **Engineered Feature:**
+```python
+titanic_df['Family_members'] = titanic_df['SibSp'] + titanic_df['Parch'] + 1
