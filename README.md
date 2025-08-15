@@ -45,6 +45,8 @@ titanic_df['Family_members'] = titanic_df['SibSp'] + titanic_df['Parch'] + 1
 ```
 ---
 
+<br>
+
 ## 🔄 Project Workflow
 
           ┌────────────────────┐
