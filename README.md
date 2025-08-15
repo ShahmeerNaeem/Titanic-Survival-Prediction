@@ -81,7 +81,7 @@ titanic_df['Family_members'] = titanic_df['SibSp'] + titanic_df['Parch'] + 1
           │ (Accuracy, Precision│
           │ Recall, F1)        │
           └────────────────────┘
-
+<br>
 ## 1️⃣ Import Required Libraries
 
 ```import pandas as pd
@@ -100,7 +100,7 @@ from sklearn.tree import DecisionTreeClassifier
 - sklearn.ensemble → Random Forest model
 - sklearn.tree → Decision Tree model
 
-
+<br>
 
 ## 2️⃣ Load Dataset
 
@@ -110,18 +110,7 @@ Reads the dataset into a DataFrame for processing, The file should be in the sam
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+<br>
 
 ## 3️⃣ Initial Dataset Overview
 ```
@@ -132,7 +121,7 @@ titanic_df.dtypes
 
 - .shape → Returns (rows, columns) count.
 - .dtypes → Shows data types for each column.
-
+<br>
 ## 4️⃣ Check Missing Values
 ```
 titanic_df.isna().sum()
@@ -141,7 +130,7 @@ titanic_df.isna().sum()
 
 - Identifies columns with missing values.
 - Essential before any preprocessing.
-
+<br>
 ## 5️⃣ Handle Missing Values & Feature Engineering (Cabin & Embarked)
 ```
 # Extract first letter of 'Cabin' to reduce unique categories
@@ -157,7 +146,7 @@ titanic_df['Embarked'] = titanic_df['Embarked'].fillna(titanic_df['Embarked'].mo
 
 - Cabin → Only keep first letter to represent cabin group. Missing cabins are marked as 'Unknown'.
 - Embarked → Filled using mode() (most common port).
-
+<br>
 ## 6️⃣ Encode Categorical Variables
 ```
 titanic_df = pd.get_dummies(titanic_df, columns=['Sex', 'Embarked', 'Cabin'])
@@ -165,21 +154,21 @@ titanic_df = pd.get_dummies(titanic_df, columns=['Sex', 'Embarked', 'Cabin'])
 
 - Converts categorical columns into dummy/indicator variables (0/1 encoding).
 - This makes them suitable for ML algorithms.
-
+<br>
 ## 7️⃣ Fill Missing Age with Median
 ```
 titanic_df['Age'] = titanic_df['Age'].fillna(titanic_df['Age'].median())
 ```
 
 - Median is robust to outliers compared to mean.
-
+<br>
 ## 8️⃣ Recheck Missing Values
 ```
 titanic_df.isna().sum()
 ```
 
 - Confirms there are no more missing values before training.
-
+<br>
 ## 9️⃣ Check Class Distribution
 ```
 print(titanic_df['Survived'].value_counts(normalize=True))
@@ -187,14 +176,14 @@ print(titanic_df['Survived'].value_counts(normalize=True))
 
 - Shows survival rate proportions (class balance).
 - Helps decide if special handling for imbalance is needed.
-
+<br>
 ## 🔟 Feature Engineering — Family Members
 ```
 titanic_df['Family_members'] = titanic_df['SibSp'] + titanic_df['Parch'] + 1
 ```
 
 - Creates a new feature combining siblings/spouses (SibSp) and parents/children (Parch) plus the passenger themself.
-
+<br>
 ## 1️⃣1️⃣ Define Features (X) & Target (y)
 ```
 X = titanic_df.drop(['PassengerId', 'SibSp', 'Parch', 'Name', 'Survived', 'Ticket'], axis=1)
@@ -203,7 +192,7 @@ y = titanic_df['Survived']
 
 - X → All predictors except IDs and irrelevant columns.
 - y → Target column (Survived).
-
+<br>
 ## 1️⃣2️⃣ Train-Test Split
 ```
 X_train, X_test, y_train, y_test = train_test_split(
@@ -213,7 +202,7 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 - 30% test set
 - Stratify → Maintains class proportions in both sets.
-
+<br>
 ## 1️⃣3️⃣ Define Models
 ```
 models = {
@@ -226,7 +215,7 @@ models = {
 - Logistic Regression → Simple linear model for classification
 - Random Forest → Ensemble of decision trees
 - Decision Tree → Tree-based classification
-
+<br>
 ## 1️⃣4️⃣ Hyperparameter Grids
 ```
 params = {
@@ -248,7 +237,7 @@ params = {
 ```
 
 - Defines parameter ranges for RandomizedSearchCV tuning
-
+<br>
 ## 1️⃣5️⃣ Model Training & Evaluation
 ```
 for name, model in models.items():
