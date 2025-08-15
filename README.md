@@ -43,6 +43,7 @@ Predict whether a passenger survived the Titanic disaster, using personal, ticke
 ```python
 titanic_df['Family_members'] = titanic_df['SibSp'] + titanic_df['Parch'] + 1
 ```
+---
 
 ## 🔄 Project Workflow
 
@@ -99,11 +100,15 @@ from sklearn.tree import DecisionTreeClassifier
 - sklearn.ensemble → Random Forest model
 - sklearn.tree → Decision Tree model
 
+
+
 ## 2️⃣ Load Dataset
 
 ```titanic_df = pd.read_csv('Titanic-Dataset.csv')```
 
 Reads the dataset into a DataFrame for processing, The file should be in the same directory or provide the full path.
+
+
 
 ## 3️⃣ Initial Dataset Overview
 ```
