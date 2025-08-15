@@ -92,73 +92,79 @@ from sklearn.tree import DecisionTreeClassifier
 ```
 
 
-pandas → Data loading and manipulation
+- pandas → Data loading and manipulation
 
-sklearn.model_selection → Splitting datasets and cross-validation
+- sklearn.model_selection → Splitting datasets and cross-validation
 
-sklearn.linear_model → Logistic Regression model
+- sklearn.linear_model → Logistic Regression model
 
-sklearn.metrics → Evaluation metrics
+- sklearn.metrics → Evaluation metrics
 
-sklearn.ensemble → Random Forest model
+- sklearn.ensemble → Random Forest model
 
-sklearn.tree → Decision Tree model
+- sklearn.tree → Decision Tree model
 
-2️⃣ Load Dataset
-titanic_df = pd.read_csv('Titanic-Dataset.csv')
+## 2️⃣ Load Dataset
+```titanic_df = pd.read_csv('Titanic-Dataset.csv')```
 
 
-Reads the dataset into a DataFrame for processing.
+Reads the dataset into a DataFrame for processing, The file should be in the same directory or provide the full path.
 
-The file should be in the same directory or provide the full path.
-
-3️⃣ Initial Dataset Overview
+## 3️⃣ Initial Dataset Overview
+```
 titanic_df.shape
 titanic_df.dtypes
+```
 
 
-.shape → Returns (rows, columns) count.
+- .shape → Returns (rows, columns) count.
 
-.dtypes → Shows data types for each column.
+- .dtypes → Shows data types for each column.
 
-4️⃣ Check Missing Values
+## 4️⃣ Check Missing Values
+```
 titanic_df.isna().sum()
+```
 
 
-Identifies columns with missing values.
+- Identifies columns with missing values.
 
-Essential before any preprocessing.
+- Essential before any preprocessing.
 
-5️⃣ Handle Missing Values & Feature Engineering (Cabin & Embarked)
+##5️⃣ Handle Missing Values & Feature Engineering (Cabin & Embarked)
+```
 # Extract first letter of 'Cabin' to reduce unique categories
 titanic_df['Cabin'] = titanic_df['Cabin'].str[0]
+
 
 # Fill missing Cabin values with 'Unknown'
 titanic_df['Cabin'] = titanic_df['Cabin'].fillna('Unknown')
 
 # Fill missing Embarked values with most frequent value
 titanic_df['Embarked'] = titanic_df['Embarked'].fillna(titanic_df['Embarked'].mode()[0])
+```
 
+- Cabin → Only keep first letter to represent cabin group. Missing cabins are marked as 'Unknown'.
 
-Cabin → Only keep first letter to represent cabin group. Missing cabins are marked as 'Unknown'.
+- Embarked → Filled using mode() (most common port).
 
-Embarked → Filled using mode() (most common port).
-
-6️⃣ Encode Categorical Variables
+## 6️⃣ Encode Categorical Variables
+```
 titanic_df = pd.get_dummies(titanic_df, columns=['Sex', 'Embarked', 'Cabin'])
+```
 
+- Converts categorical columns into dummy/indicator variables (0/1 encoding).
 
-Converts categorical columns into dummy/indicator variables (0/1 encoding).
+- This makes them suitable for ML algorithms.
 
-This makes them suitable for ML algorithms.
-
-7️⃣ Fill Missing Age with Median
+## 7️⃣ Fill Missing Age with Median
+```
 titanic_df['Age'] = titanic_df['Age'].fillna(titanic_df['Age'].median())
+```
 
+- Median is robust to outliers compared to mean.
 
-Median is robust to outliers compared to mean.
-
-8️⃣ Recheck Missing Values
+## 8️⃣ Recheck Missing Values
 titanic_df.isna().sum()
 
 
