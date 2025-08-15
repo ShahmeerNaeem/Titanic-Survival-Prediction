@@ -110,6 +110,19 @@ Reads the dataset into a DataFrame for processing, The file should be in the sam
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 3️⃣ Initial Dataset Overview
 ```
 titanic_df.shape
@@ -129,7 +142,7 @@ titanic_df.isna().sum()
 - Identifies columns with missing values.
 - Essential before any preprocessing.
 
-##5️⃣ Handle Missing Values & Feature Engineering (Cabin & Embarked)
+## 5️⃣ Handle Missing Values & Feature Engineering (Cabin & Embarked)
 ```
 # Extract first letter of 'Cabin' to reduce unique categories
 titanic_df['Cabin'] = titanic_df['Cabin'].str[0]
@@ -173,10 +186,9 @@ print(titanic_df['Survived'].value_counts(normalize=True))
 ```
 
 - Shows survival rate proportions (class balance).
-
 - Helps decide if special handling for imbalance is needed.
 
-##🔟 Feature Engineering — Family Members
+## 🔟 Feature Engineering — Family Members
 ```
 titanic_df['Family_members'] = titanic_df['SibSp'] + titanic_df['Parch'] + 1
 ```
