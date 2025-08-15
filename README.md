@@ -42,3 +42,38 @@ Predict whether a passenger survived the Titanic disaster, using personal, ticke
 - **Engineered Feature:**
 ```python
 titanic_df['Family_members'] = titanic_df['SibSp'] + titanic_df['Parch'] + 1
+
+          ┌────────────────────┐
+          │   Load Dataset     │
+          └─────────┬──────────┘
+                    ↓
+          ┌────────────────────┐
+          │  Data Cleaning     │
+          │  (Missing values)  │
+          └─────────┬──────────┘
+                    ↓
+          ┌────────────────────┐
+          │ Feature Engineering │
+          │ (Family_members,    │
+          │ Cabin extraction)   │
+          └─────────┬──────────┘
+                    ↓
+          ┌────────────────────┐
+          │ Encoding Categorical│
+          │ Variables (dummies) │
+          └─────────┬──────────┘
+                    ↓
+          ┌────────────────────┐
+          │ Train-Test Split   │
+          └─────────┬──────────┘
+                    ↓
+          ┌────────────────────┐
+          │ Model Training &   │
+          │ Hyperparameter Tuning│
+          └─────────┬──────────┘
+                    ↓
+          ┌────────────────────┐
+          │ Model Evaluation   │
+          │ (Accuracy, Precision│
+          │ Recall, F1)        │
+          └────────────────────┘
