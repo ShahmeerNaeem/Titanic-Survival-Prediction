@@ -1,56 +1,39 @@
-# 🚢 Titanic Survival Prediction — End-to-End ML Project
+# 🚢 Titanic Survival Prediction
 
-## 📌 Overview
-This project predicts whether a passenger survived the Titanic disaster using machine learning techniques. It follows a complete ML workflow: data cleaning, feature engineering, model selection, hyperparameter tuning, and evaluation.
+This project applies **Machine Learning** techniques to predict whether a passenger survived the Titanic disaster based on demographic and travel details.  
+It uses **data preprocessing**, **feature engineering**, and **hyperparameter tuning** to compare multiple models.
 
-## 📂 Dataset
-- Source: [Kaggle Titanic Dataset](https://www.kaggle.com/c/titanic/data)
-- Features include passenger demographics, ticket information, cabin details, and more.
+---
 
-## 🛠 Workflow
-1. **Data Preprocessing**
-   - Imputed missing values in `Age`, `Cabin`, and `Embarked`
-   - Extracted first letter from `Cabin` (cabin section)
-   - One-hot encoded categorical variables
-   - Filled missing values in numeric features with median
+## 📌 Project Overview
+The goal of this project is to:
+- Load and clean the Titanic dataset
+- Handle missing values and encode categorical variables
+- Engineer new features to improve model performance
+- Train multiple machine learning models:
+  - Logistic Regression  
+  - Random Forest  
+  - Decision Tree
+- Perform **hyperparameter tuning** using `RandomizedSearchCV` with `KFold` cross-validation
+- Evaluate models using **Accuracy, Precision, Recall, and F1-score**
 
-2. **Feature Engineering**
-   - Created `Family_members` feature (`SibSp` + `Parch` + 1)
-   - Dropped irrelevant columns (`PassengerId`, `Name`, `Ticket`)
+---
 
-3. **Modeling**
-   - Compared:
-     - Logistic Regression
-     - Random Forest Classifier
-     - Decision Tree Classifier
-   - Used `RandomizedSearchCV` with `KFold` cross-validation for tuning
+## 📊 Dataset
+The dataset used is **Titanic-Dataset.csv** containing:
+- **PassengerId** – Unique ID for each passenger  
+- **Survived** – Target variable (1 = Survived, 0 = Did not survive)  
+- **Pclass** – Passenger class (1st, 2nd, 3rd)  
+- **Name, Sex, Age** – Demographics  
+- **SibSp, Parch** – Number of siblings/spouses and parents/children aboard  
+- **Ticket, Fare, Cabin, Embarked** – Ticket details and port of embarkation  
 
-4. **Evaluation Metrics**
-   - Accuracy
-   - Precision
-   - Recall
-   - F1 Score
+📥 **Dataset Link:** [Kaggle Titanic Dataset](https://www.kaggle.com/c/titanic)
 
-## 📊 Results (example output)
-| Model              | Accuracy | Precision | Recall | F1 Score |
-|--------------------|----------|-----------|--------|----------|
-| Logistic Regression| 0.82     | 0.77      | 0.72   | 0.74     |
-| Random Forest      | 0.85     | 0.81      | 0.78   | 0.79     |
-| Decision Tree      | 0.80     | 0.75      | 0.74   | 0.74     |
+---
 
-## 📦 Tech Stack
-- Python
-- Pandas
-- NumPy
-- Scikit-learn
-
-## 🚀 Next Steps
-- Wrap preprocessing + modeling into a Scikit-learn Pipeline
-- Add model persistence (`joblib`)
-- Deploy as a simple API or Streamlit app
-
-## 📜 License
-This project is open-source under the MIT License.
-
-## 🔗 Repository
-[GitHub Repo](https://github.com/yourusername/titanic-ml-project)
+## ⚙️ Installation
+1. **Clone the repository**
+```bash
+git clone https://github.com/yourusername/titanic-survival-prediction.git
+cd titanic-survival-prediction
